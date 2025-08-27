@@ -1,21 +1,18 @@
 # ANGULAR 
-
+version 14 
 # Install
-npm install -g @angular/cli
+npm install -g @angular/cli@14
 
 # Powershell configuration
 set-ExecutionPolicy - Scope CurrentUser
 -ExecutionPolicy RemoteSigned
-
-# Test enviroment 
-ng version 
 
 # Create Project 
 ng new MYAPP
 
 # Execute project 
 cd MYAPP 
-ng serve --open 
+ng serve --open or ng serve
 
 # Route 
 -> I created app-2 with the inclusion of the routing of system 
