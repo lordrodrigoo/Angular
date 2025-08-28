@@ -1,8 +1,9 @@
-# ANGULAR 
-version 14 
+# My config
+    Angular CLI: 14.2.13
+    Node: 16.20.2
+    Package Manager: npm 8.19.4
+    OS: win32 x64
 
-# NODE
-version 16.20.2
 
 # Install
 npm install -g @angular/cli@14
