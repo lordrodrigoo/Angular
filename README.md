@@ -1,5 +1,9 @@
 # ANGULAR 
 version 14 
+
+# NODE
+version 16.20.2
+
 # Install
 npm install -g @angular/cli@14
 
