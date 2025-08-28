@@ -4,6 +4,16 @@
     Package Manager: npm 8.19.4
     OS: win32 x64
 
+### ⚠️ Node.js Compatibility
+If you get TypeScript errors related to Node types (e.g., Symbol.dispose) when running the app:
+1- Use a compatible Node version:
+
+nvm install 18
+nvm use 18
+
+2- Or add this to tsconfig.json to skip library type checks:
+
+"skipLibCheck": true
 
 # Install
 npm install -g @angular/cli@14
