@@ -3,13 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NovprodComponent } from './novprod/novprod.component';
 import { ProdutoComponent } from './produto/produto.component';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login.service';
 
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'produto', component: ProdutoComponent},
-  {path: 'novoprod', component: NovprodComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'produto', component: ProdutoComponent, canActivate: [LoginService]},
+  {path: 'novoprod', component: NovprodComponent, canActivate: [LoginService]},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({

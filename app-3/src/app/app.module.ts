@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,9 @@ import { LateralComponent } from './lateral/lateral.component';
 import { HomeComponent } from './home/home.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { NovprodComponent } from './novprod/novprod.component';
+import { ProdutoService } from './produto.service';
+import { LoginService } from './login.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,15 @@ import { NovprodComponent } from './novprod/novprod.component';
     LateralComponent,
     HomeComponent,
     ProdutoComponent,
-    NovprodComponent
+    NovprodComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [ProdutoService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
