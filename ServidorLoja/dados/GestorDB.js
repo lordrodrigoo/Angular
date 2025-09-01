@@ -1,8 +1,7 @@
 const mongoClient = require("mongodb").MongoClient;
 const ObjectId = require('mongodb').ObjectId;
 
-mongoClient.connect("mongodb://127.0.0.1", 
- {useUnifiedTopology: true})
+mongoClient.connect("mongodb://127.0.0.1")
  .then(conn => global.conn = conn.db("loja"))
  .catch(err => console.log(err))
  
