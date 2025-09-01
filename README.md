@@ -37,3 +37,19 @@ ng new app-2 --routing
 cd 'your app'
 ng generate component 'Home'
 ng generate component 'about'
+
+# To create service 
+ng g s Produto --flat true --skip-tests true
+
+-> We need a class for products
+ng g class Produto --skip-tests true
+
+# CanActivate
+ng g s Login --flat true --skip-tests true
+ng g class Usuario --skip-tests true
+
+# We create a service for represent the server  (app-3-RX)
+
+npm install angular-in-memory-web-api@0.14.0 --save
+
+ng g s ProdutoServidor --flat --skip-tests true
