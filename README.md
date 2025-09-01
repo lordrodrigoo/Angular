@@ -53,3 +53,11 @@ ng g class Usuario --skip-tests true
 npm install angular-in-memory-web-api@0.14.0 --save
 
 ng g s ProdutoServidor --flat --skip-tests true
+
+# Server REST with Express 
+npm install -g express-generator
+
+# Create server
+express -e ServidorLoja
+cd ServidorLoja
+npm install mongodb
