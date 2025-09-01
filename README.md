@@ -61,3 +61,6 @@ npm install -g express-generator
 express -e ServidorLoja
 cd ServidorLoja
 npm install mongodb
+
+npm start 
+
