@@ -21,4 +21,12 @@ function deleteOne(chave) {
  .deleteOne({_id: ObjectId(chave)});
 }
 
-module.exports = { findAll, insert, deleteOne, findOne }  
+function createUser(usuario) {
+    return global.conn.collection("usuarios").findOne({login, senha});
+}
+
+function findUser(login, senha) {
+    return global.conn.collection("usuarios").findOne({login, senha})
+}
+
+module.exports = { findAll, insert, deleteOne, findOne, createUser, findUser }  

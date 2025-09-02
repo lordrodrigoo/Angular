@@ -65,4 +65,5 @@ npm install mongodb
 npm start 
 http://localhost:3000/produto
 
-
+# Using CORS
+npm install cors 
