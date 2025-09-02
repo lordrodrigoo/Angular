@@ -1,0 +1,5 @@
+ <div class="pnlProduto" *ngFor="let produto of produtos">
+ {{produto.codigo}}<br/>
+ {{produto.nome}}<br/>
+ Quantidade: {{produto.quantidade}}<hr/>
+ <button (click)="excluir(produto._id)">Excluir</button></div>
