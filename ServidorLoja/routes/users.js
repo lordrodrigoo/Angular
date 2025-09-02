@@ -4,7 +4,7 @@ var crypto = require('crypto');
 
 function getSenhaHex(senha) {
   const secret = 'StrongPassword';
-  const hash = crypto.createHmac('sha256', secret).update(senha).digest():
+  const hash = crypto.createHmac('sha256', secret).update(senha).digest();
   return hash;
 }
 
