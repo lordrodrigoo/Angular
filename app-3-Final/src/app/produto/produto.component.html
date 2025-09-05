@@ -1,5 +1,18 @@
+<main id="conteudo">
+ <div style="width:100%; margin:10px;">
+ <h2 style="display:inline">Listagem de produtos</h2>
+ <button mat-fab color="primary" style="float:right"
+ (click)="incluir()">
+ <span style="font-size: 30px;">+</span>
+ </button><hr/>
+ </div>
+ <div class="container">
  <div class="pnlProduto" *ngFor="let produto of produtos">
- {{produto.codigo}}<br/>
- {{produto.nome}}<br/>
+ {{produto.codigo}}<br/> {{produto.nome}}<br/>
  Quantidade: {{produto.quantidade}}<hr/>
- <button (click)="excluir(produto._id)">Excluir</button></div>
+ <button mat-raised-button color="warn" 
+ (click)="excluir(produto._id)">Excluir</button>
+ </div>
+ </div>
+</main>
+<app-lateral pagina="Listagem de produtos"></app-lateral>

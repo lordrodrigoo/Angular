@@ -1,50 +1,72 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, 
+ RouterStateSnapshot, UrlTree } from '@angular/router';
+import { catchError, concat, from, map, Observable, of, tap } 
+ from 'rxjs';
 import { Usuario } from './usuario';
-import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+ providedIn: 'root'
 })
-export class LoginService implements CanActivate {
-  private usuarios = [
-    new Usuario("admin", "1234", "Administrador", "admin@admin.com"),
-    new Usuario("ana","1234","Ana Maria","ana@calango.com"),
-    new Usuario("luiz","1234","Luiz Carlos","luiz@calango.com")
-  ]
-
-  router: Router;
-  isAuthenticated: boolean = false;
-  usuarioLogado: Usuario = new Usuario();
-
-  constructor(router: Router) {this.router = router; }
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): 
-  boolean | UrlTree | Observable<boolean | UrlTree> | 
-  Promise<boolean | UrlTree> {
-    
-  if (!this.isAuthenticated)
-    return this.router.parseUrl("/login");
-  else
-    return true;  
-   }
-
-   signin(login: string, senha: string): boolean {
-    let usuario = this.usuarios.filter((value) => value.login == login).pop();
-
-    if((usuario != null)&&(usuario.senha==senha)) {
-      this.usuarioLogado = usuario;
-      this.isAuthenticated = true;
-      return true;
-    }
-    else {
-      return false;
-    }
-   }
-
-   signout() {
-    this.usuarioLogado = new Usuario();
-    this.isAuthenticated = false;
-   }
-
+export class LoginService implements CanActivate{
+ private usersUrl = "http://localhost:3000/users";
+ private http: HttpClient; 
+ httpOptions = {
+ headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+ };
+ router: Router;
+ isAuthenticated: boolean = false;
+ usuarioLogado: Usuario = new Usuario();
+ constructor(router: Router, http: HttpClient) {
+ this.router = router;
+ this.http = http;
+ }
+ private handleError<T>(operation:string = 'operation', result?: T) {
+ return (error: any): Observable<T> => {
+ console.error(operation+" :: "+error); 
+ return of(result as T);
+ };
+ }
+ canActivate(route: ActivatedRouteSnapshot,
+ state: RouterStateSnapshot): 
+ boolean | UrlTree | Observable<boolean | UrlTree> | 
+ Promise<boolean | UrlTree> {
+ if(!this.isAuthenticated)
+ return this.router.parseUrl("/login");
+ else
+ return true;
+ }
+ private findUser(login: string, senha: string): Observable<Usuario>{
+ return this.http.post<Usuario>(`${this.usersUrl}/login`, 
+ {login,senha}, this.httpOptions).pipe(
+ tap((doc: any) => {
+ console.log("Retorno do servidor:"+ JSON.stringify(doc));
+ }),catchError(this.handleError<Usuario>('login'))
+ );
+ }
+ signin(login: string, senha:string): Observable<boolean> {
+ return this.findUser(login,senha).pipe(
+ map((usuario)=>{
+ if(usuario.login!=undefined){
+ this.usuarioLogado = usuario;
+ this.isAuthenticated = true;
+ return true;
+ } else
+ return false;
+ }),catchError(this.handleError<boolean>('login',false))
+ );
+ }
+ signout(){
+ this.usuarioLogado = new Usuario();
+ this.isAuthenticated = false;
+ }
+ addUser(usuario: Usuario): Observable<any>{
+ return this.http.post<Usuario>(this.usersUrl,
+ JSON.stringify(usuario), this.httpOptions).pipe(
+ tap((doc: any) => {
+ console.log("Identificador gerado:"+ doc.insertedId);
+ }),catchError(this.handleError<Usuario>('login'))
+ ); 
+ }
 }

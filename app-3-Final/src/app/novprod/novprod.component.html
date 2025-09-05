@@ -2,16 +2,23 @@
  <div style="width:100%; margin:10px;">
  <h2 style="display:inline;">Novo Produto</h2><hr/>
  <form (submit)="incluir()">
- <label for="codigo">Código:</label>
- <input type="text" name="codigo" 
- [(ngModel)]="produto.codigo"><br/>
- <label for="nome">Nome:</label>
- <input type="text" name="nome" 
- [(ngModel)]="produto.nome"><br/>
- <label for="quantidade">Quantidade:</label>
- <input type="number" name="quantidade" 
- [(ngModel)]="produto.quantidade"><br/>
- <button type="submit" [disabled]="enviando">Incluir</button>
+ <mat-form-field appearance="fill">
+ <mat-label>Código</mat-label>
+ <input matInput name="codigo" type="text" 
+ [(ngModel)]="produto.codigo">
+ </mat-form-field>&nbsp;&nbsp;
+ <mat-form-field appearance="fill">
+ <mat-label>Nome</mat-label>
+ <input matInput name="nome" type="text" 
+ [(ngModel)]="produto.nome">
+ </mat-form-field>&nbsp;&nbsp;
+ <mat-form-field appearance="fill">
+ <mat-label>Quantidade</mat-label>
+ <input matInput name="quantidade" type="number" 
+ [(ngModel)]="produto.quantidade">
+ </mat-form-field><br/>
+ <button mat-raised-button color="primary" type="submit" 
+ [disabled]="enviando">Incluir</button>
  </form>
  </div>
 </main>

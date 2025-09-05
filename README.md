@@ -67,3 +67,6 @@ http://localhost:3000/produto
 
 # Using CORS
 npm install cors 
+
+# For app-3-Final 
+npm uninstall angular-in-memory-web-api

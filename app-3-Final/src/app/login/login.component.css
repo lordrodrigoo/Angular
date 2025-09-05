@@ -10,3 +10,8 @@ label, button{
  color:red; width:98%; background-color:lightyellow;
  padding:5px; border:red 1px dotted; font-weight: bold;
 }
+
+.pnlInterno{
+    width: 49%; display: flex; flex-wrap: wrap; float: left;
+    
+}
